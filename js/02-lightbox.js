@@ -7,28 +7,11 @@ const markup = galleryItems.map(({ preview, original, description }) =>
      </a>`).join(``);
 // console.log(markup);
 imgGalery.insertAdjacentHTML(`beforeend`, markup);
-// let instance = ``;
-imgGalery.addEventListener(`click`, (evt) => {
-    evt.preventDefault();
-    // console.log(evt.currentTarget);
-    // console.dir(evt.target);
-    // console.dir(evt.target.dataset.src);
 
-    let gallery = new SimpleLightbox('.gallery a', {
-        captionsData: "alt",
-        captionDelay: 250,
-    });
-
-    document.addEventListener('keydown', onModalCloseToEscape);
-
-    function onModalCloseToEscape(event) {
-        if (event.code === "Escape") {
-            instance.close();
-            document.removeEventListener("keydown", onModalCloseToEscape);
-
-        }
-    }
-
+let gallery = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,
 });
-
-// console.log(galleryItems);
+gallery.on('show.simplelightbox', function() {
+    // Do something…
+});
